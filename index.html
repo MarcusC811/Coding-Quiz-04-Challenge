@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/reset.css">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="./assets/reset.css">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
     <nav>
-        <div> View high scores </div>
+        <a href="#"> View high scores </a>
         <div> Time: <span id="timer"></span> </div>
     </nav>
 
@@ -20,10 +20,13 @@
 
     <div>
         <p> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
-        <button>
+        <button id="startButton">
             Start Quiz
         </button>
-    </div>    
-    <script src="/assets/script.js"></script>
+    </div>
+    
+    <div id="quiz">
+    </div>
+    <script src="./assets/script.js"></script>
 </body>
 </html>

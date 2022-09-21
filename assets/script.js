@@ -1,7 +1,10 @@
 var startButton = document.getElementById("startButton");
 var correctAnswers = localStorage.getItem("rightAnswer");
-var quizSection = document.getElementById("quiz");
-var questions = [
+var questionContainer = document.getElementById("question-container");
+var questionEl = document.getElementById("question");
+var answerBtns = document.getElementById("answer-buttons");
+
+var questionsLists = [
     {
         question: 'What 9 + 10?',
         Answers: {
@@ -26,16 +29,19 @@ var questions = [
     
     }
 ];
-console.log(typeof questions);
+console.log(questionsLists.question);
 
-function showQuestions() {
-    function generateQuestions(){
+// Starting Quiz Function
+function showQuestions(event) {
+    startButton.classList.add('hide');
+    questionContainer.classList.remove('hide');
+    nextQuestion();
 
-    }
+}
 
-    function showResults(){
-
-    }
+// Display Next
+function nextQuestion() {
+    questionEl.innerHTML ='<h2>' + questionsLists.question + '</h2>';
 }
 
 startButton.addEventListener("click", showQuestions);

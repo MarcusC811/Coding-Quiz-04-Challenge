@@ -16,13 +16,29 @@
 
     <header>
         <h1> Coding Quiz Challenge </h1>
+
+        <p> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
     </header>
 
-    <div>
-        <p> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
-        <button id="startButton">
-            Start Quiz
-        </button>
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question"> Question </div>
+            
+            <div id="answer-buttons">
+                <button> Answer 1 </button>
+                <button> Answer 2 </button>
+                <button> Answer 3 </button>
+                <button> Answer 4 </button>
+            </div>
+
+        </div>
+        
+        <div class="userControls"> 
+            <button id="startButton">
+                Start Quiz
+            </button>
+            <button id="nextButton" class="hide"> Next </button>
+        </div>
     </div>
     
     <div id="quiz">

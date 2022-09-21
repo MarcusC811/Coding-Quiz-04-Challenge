@@ -29,7 +29,9 @@ var questionsLists = [
     
     }
 ];
-console.log(questionsLists.question);
+console.log(questionsLists);
+console.log(questionsLists[0].question);
+console.log(JSON.stringify(questionsLists[0].Answers));
 
 // Starting Quiz Function
 function showQuestions(event) {
@@ -41,7 +43,16 @@ function showQuestions(event) {
 
 // Display Next
 function nextQuestion() {
-    questionEl.innerHTML ='<h2>' + questionsLists.question + '</h2>';
+    questionEl.innerHTML =questionsLists[0].question;
+    questionsLists[0].Answers.forEach(element => {
+        const button = document.createElement('button');
+        button.innerText = element.text;
+    });
 }
 
 startButton.addEventListener("click", showQuestions);
+
+// questionsLists[0].Answers.forEach(Answers => {
+//     const button = document.createElement('button');
+//     button.innerText = answers.text;
+// }) [0].Answers

@@ -3,17 +3,17 @@ var correctAnswers = localStorage.getItem("rightAnswer");
 var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerBtns = document.getElementById("answer-buttons");
+var currentQuestion = 0;
 
 var questionsLists = [
     {
         question: 'What 9 + 10?',
-        Answers: {
-        A: '21',
-        B: '11', 
-        C: '14',
-        D: '19' 
-        },
-    correctAnswer: 'D'
+        Answers: [
+        '21',
+        '11', 
+        '14',
+        '19' ],
+    correctAnswer: '19'
     
     },
 
@@ -43,16 +43,15 @@ function showQuestions(event) {
 
 // Display Next
 function nextQuestion() {
-    questionEl.innerHTML =questionsLists[0].question;
-    questionsLists[0].Answers.forEach(element => {
+    answerBtns.innerHTML = '';
+    questionEl.innerHTML =questionsLists[currentQuestion].question;
+    questionsLists[currentQuestion].Answers.forEach(element => {
         const button = document.createElement('button');
-        button.innerText = element.text;
+        button.innerText = element;
+        answerBtns.append(button);
     });
+
+    currentQuestion++;
 }
 
 startButton.addEventListener("click", showQuestions);
-
-// questionsLists[0].Answers.forEach(Answers => {
-//     const button = document.createElement('button');
-//     button.innerText = answers.text;
-// }) [0].Answers

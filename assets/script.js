@@ -4,6 +4,7 @@ var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerBtns = document.getElementById("answer-buttons");
 var nextBtn = document.getElementById("nextButton");
+var testBtn = document.getElementsByClassName("new-answer-btn");
 var currentQuestion = 0;
 
 var questionsLists = [
@@ -19,19 +20,16 @@ var questionsLists = [
     },
 
     {
-        question: 'What 9 + 10?',
-        Answers: {
-        A: '21',
-        B: '11', 
-        C: '14',
-        D: '19' 
-        },
-    correctAnswer: 'D'
+        question: 'Is Galaxia the GOAT?',
+        Answers: [
+        'yes',
+        'yes', 
+        'yes',
+        'yes' ],
+    correctAnswer: 'yes'
     
     }
 ];
-console.log(questionsLists);
-console.log(questionsLists[0].correctAnswer);
 
 // Starting Quiz Function
 function startQuiz(event) {
@@ -50,6 +48,7 @@ function nextQuestion() {
         button.innerText = element;
         button.classList.add("new-answer-btn");
         answerBtns.append(button);
+        answerBtns.addEventListener("click", answerVerify);
     });
 
     
@@ -57,12 +56,16 @@ function nextQuestion() {
 
 function answerVerify (event) {
     const selectedAnswer = event.target;
-    if(selectedAnswer===questionsLists[currentQuestion].correctAnswer) {
-        currentQuestion++;
+    if(selectedAnswer.innerText===questionsLists[currentQuestion].correctAnswer) {
+        alert('correct!')
     } else {
         alert('Wrong Answer')
     }
+
+    currentQuestion++;
 }
+
+
 
 startButton.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", nextQuestion);

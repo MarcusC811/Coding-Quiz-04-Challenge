@@ -5,7 +5,10 @@ var questionEl = document.getElementById("question");
 var answerBtns = document.getElementById("answer-buttons");
 var nextBtn = document.getElementById("nextButton");
 var testBtn = document.getElementsByClassName("new-answer-btn");
+var timerText = document.getElementById("timer");
+var scoreText = document.getElementById("score");
 var currentQuestion = 0;
+var wins = 0;
 
 var questionsLists = [
     {
@@ -33,8 +36,10 @@ var questionsLists = [
 
 // Starting Quiz Function
 function startQuiz(event) {
+    setTime();
     startButton.classList.add('hide');
     questionContainer.classList.remove('hide');
+    scoreText.innerText = wins;
     nextQuestion();
 }
 
@@ -58,14 +63,23 @@ function answerVerify (event) {
     const selectedAnswer = event.target;
     if(selectedAnswer.innerText===questionsLists[currentQuestion].correctAnswer) {
         alert('correct!')
+        wins++;
+        currentQuestion++;
+        nextQuestion();
     } else {
         alert('Wrong Answer')
     }
 
-    currentQuestion++;
+    
 }
 
-
+function setTime() {
+    var secLeft = 75;
+    timerText.innerText = secLeft;
+    setInterval(function() {
+        secLeft--;
+    } , 1000)
+}
 
 startButton.addEventListener("click", startQuiz);
-nextBtn.addEventListener("click", nextQuestion);
+// nextBtn.addEventListener("click", nextQuestion);

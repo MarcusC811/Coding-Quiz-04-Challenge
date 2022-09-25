@@ -93,9 +93,6 @@ function nextQuestion() {
         answerBtns.append(button);
         answerBtns.addEventListener("click", answerVerify);
     });
-
-    
-    
 }
 
 function answerVerify (event) {

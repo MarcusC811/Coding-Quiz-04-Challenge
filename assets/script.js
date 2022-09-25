@@ -7,13 +7,15 @@ var answerBtns = document.getElementById("answer-buttons");
 var nextBtn = document.getElementById("nextButton");
 var testBtn = document.getElementsByClassName("new-answer-btn");
 var timerText = document.getElementById("timer");
+var timerEl = document.getElementById("timer-div");
 var resultEl = document.getElementById("results");
 var resultP = document.getElementById('resultText');
 var submitResults = document.getElementById('resultSubBtn');
+var username = document.getElementById('fname');
 var currentQuestion = 0;
-var wins = 0;
+var lastWin = 0;
 var timeLeft = 75;
-
+var highScore = localStorage.getItem("highScore");
 var questionsLists = [
     {
         question: 'What 9 + 10?',
@@ -77,11 +79,11 @@ function startQuiz(event) {
     startButton.classList.add('hide');
     questionContainer.classList.remove('hide');
     nextQuestion();
+    scoreBoard();
 }
 
 // Display Next  Question
 function nextQuestion() {
-    nextBtn.classList.remove("hide");
     answerBtns.innerHTML = '';
     questionEl.innerHTML =questionsLists[currentQuestion].question;
     questionsLists[currentQuestion].Answers.forEach(element => {
@@ -97,7 +99,7 @@ function answerVerify (event) {
     const selectedAnswer = event.target;
     if(selectedAnswer.innerText===questionsLists[currentQuestion].correctAnswer) {
         alert('correct!')
-        wins++;
+        lastWin++;
         currentQuestion++;
         nextQuestion();
     } else {
@@ -129,12 +131,19 @@ function testShowResults() {
         timeLeft = 0;
         quizSection.classList.add('hide');
         resultEl.classList.remove('hide');
-        resultP.innerText = "Nice job! Your score is " + wins;
-    } 
-    quizSection.classList.add('hide');
-    resultEl.classList.remove('hide');
-    resultP.innerText = "Nice job! Your score is " + wins;
-    timerText.classList.add('hide');
+        questionContainer.classList.add('hide');
+        resultP.innerText = "Nice job! Your score is " + lastWin;
+  } 
+    timerEl.classList.add('hide');
+    scoreBoard(lastWin);
+    console.log(lastWin);
+}
+// Function for rendering scoreboard
+function scoreBoard (lastWin) {
+    localStorage.setItem('highScore', lastWin);
+    console.log(typeof highScore);
+    return highScore;
 }
 
 startButton.addEventListener("click", startQuiz);
+// submitResults.addEventListener("click", getLeaderStat(highScore));

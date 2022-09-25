@@ -7,7 +7,6 @@ var answerBtns = document.getElementById("answer-buttons");
 var nextBtn = document.getElementById("nextButton");
 var testBtn = document.getElementsByClassName("new-answer-btn");
 var timerText = document.getElementById("timer");
-var scoreText = document.getElementById("score");
 var resultEl = document.getElementById("results");
 var resultP = document.getElementById('resultText');
 var submitResults = document.getElementById('resultSubBtn');
@@ -72,17 +71,15 @@ var questionsLists = [
     }
 ];
 
-console.log(wins);
 // Starting Quiz Function
 function startQuiz(event) {
     setTime();
     startButton.classList.add('hide');
     questionContainer.classList.remove('hide');
-    scoreText.innerText = wins;
     nextQuestion();
 }
 
-// Display Next
+// Display Next  Question
 function nextQuestion() {
     nextBtn.classList.remove("hide");
     answerBtns.innerHTML = '';
@@ -105,6 +102,7 @@ function answerVerify (event) {
         nextQuestion();
     } else {
         alert('Wrong Answer');
+        timeLeft-=10;
     }
 
     if(currentQuestion >= questionsLists.length - 1) {
@@ -114,7 +112,8 @@ function answerVerify (event) {
 
 function setTime() {
     var quizTimer = setInterval(function(){
-    if(timeLeft <= 0){
+    if(timeLeft <= 0 && currentQuestion < questionsLists.length - 1){
+        alert("Time is up!");
         clearInterval(quizTimer);
         timerText.innerHTML = "Finished";
         testShowResults();
@@ -125,29 +124,17 @@ function setTime() {
     }, 1000);
 }
 
-// function showResults() {
-//     if(currentQuestion >= questionsLists.length - 1) {
-//         alert("Nice job! Your score is " + wins);
-//         quizSection.classList.add('hide');
-//         resultEl.classList.remove('hide');
-//         resultP.innerText = "Nice job! Your score is " + wins;
-//     }
-
-    
-// }
-
 function testShowResults() {
-    if(currentQuestion <= questionsLists.length - 1) {
+    if(currentQuestion >= questionsLists.length - 1) {
         timeLeft = 0;
-        alert("Time is up!");
-    } else {
         quizSection.classList.add('hide');
         resultEl.classList.remove('hide');
         resultP.innerText = "Nice job! Your score is " + wins;
-    }
+    } 
     quizSection.classList.add('hide');
     resultEl.classList.remove('hide');
     resultP.innerText = "Nice job! Your score is " + wins;
+    timerText.classList.add('hide');
 }
 
 startButton.addEventListener("click", startQuiz);

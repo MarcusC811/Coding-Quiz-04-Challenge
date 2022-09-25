@@ -11,8 +11,7 @@
 <body>
     <nav>
         <a href="#"> View high scores </a>
-        <div> <H2> Score: <span id="score"></span> </H2> </div>
-        <div> Time: <span id="timer"></span> </div>
+        <div id="timer-div"> Time: <span id="timer"></span> </div>
     </nav>
 
     <header>
@@ -22,20 +21,20 @@
     </header>
 
     <div class="container" id="quiz-ele">
-        <div id="question-container" class="hide">
-            <div id="question"> Question </div>
-            
+        <div class="hide" id="question-container">
+            <div id="question"> </div>
+        </div>
+
+        <div id="answer-container">
             <div id="answer-buttons">
         
             </div>
-
         </div>
         
         <div class="userControls"> 
             <button id="startButton">
                 Start Quiz
             </button>
-            <button id="nextButton" class="hide"> Next </button>
         </div>
     </div>
     

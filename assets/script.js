@@ -7,14 +7,15 @@ var answerBtns = document.getElementById("answer-buttons");
 var nextBtn = document.getElementById("nextButton");
 var testBtn = document.getElementsByClassName("new-answer-btn");
 var timerText = document.getElementById("timer");
-var scoreText = document.getElementById("score");
+var timerEl = document.getElementById("timer-div");
 var resultEl = document.getElementById("results");
 var resultP = document.getElementById('resultText');
 var submitResults = document.getElementById('resultSubBtn');
+var username = document.getElementById('fname');
 var currentQuestion = 0;
-var wins = 0;
+var lastWin = 0;
 var timeLeft = 75;
-
+var highScore = localStorage.getItem("highScore");
 var questionsLists = [
     {
         question: 'What 9 + 10?',
@@ -72,19 +73,17 @@ var questionsLists = [
     }
 ];
 
-console.log(wins);
 // Starting Quiz Function
 function startQuiz(event) {
     setTime();
     startButton.classList.add('hide');
     questionContainer.classList.remove('hide');
-    scoreText.innerText = wins;
     nextQuestion();
+    scoreBoard();
 }
 
-// Display Next
+// Display Next  Question
 function nextQuestion() {
-    nextBtn.classList.remove("hide");
     answerBtns.innerHTML = '';
     questionEl.innerHTML =questionsLists[currentQuestion].question;
     questionsLists[currentQuestion].Answers.forEach(element => {
@@ -100,11 +99,12 @@ function answerVerify (event) {
     const selectedAnswer = event.target;
     if(selectedAnswer.innerText===questionsLists[currentQuestion].correctAnswer) {
         alert('correct!')
-        wins++;
+        lastWin++;
         currentQuestion++;
         nextQuestion();
     } else {
         alert('Wrong Answer');
+        timeLeft-=10;
     }
 
     if(currentQuestion >= questionsLists.length - 1) {
@@ -114,7 +114,8 @@ function answerVerify (event) {
 
 function setTime() {
     var quizTimer = setInterval(function(){
-    if(timeLeft <= 0){
+    if(timeLeft <= 0 && currentQuestion < questionsLists.length - 1){
+        alert("Time is up!");
         clearInterval(quizTimer);
         timerText.innerHTML = "Finished";
         testShowResults();
@@ -125,29 +126,24 @@ function setTime() {
     }, 1000);
 }
 
-// function showResults() {
-//     if(currentQuestion >= questionsLists.length - 1) {
-//         alert("Nice job! Your score is " + wins);
-//         quizSection.classList.add('hide');
-//         resultEl.classList.remove('hide');
-//         resultP.innerText = "Nice job! Your score is " + wins;
-//     }
-
-    
-// }
-
 function testShowResults() {
-    if(currentQuestion <= questionsLists.length - 1) {
+    if(currentQuestion >= questionsLists.length - 1) {
         timeLeft = 0;
-        alert("Time is up!");
-    } else {
         quizSection.classList.add('hide');
         resultEl.classList.remove('hide');
-        resultP.innerText = "Nice job! Your score is " + wins;
-    }
-    quizSection.classList.add('hide');
-    resultEl.classList.remove('hide');
-    resultP.innerText = "Nice job! Your score is " + wins;
+        questionContainer.classList.add('hide');
+        resultP.innerText = "Nice job! Your score is " + lastWin;
+  } 
+    timerEl.classList.add('hide');
+    scoreBoard(lastWin);
+    console.log(lastWin);
+}
+// Function for rendering scoreboard
+function scoreBoard (lastWin) {
+    localStorage.setItem('highScore', lastWin);
+    console.log(typeof highScore);
+    return highScore;
 }
 
 startButton.addEventListener("click", startQuiz);
+// submitResults.addEventListener("click", getLeaderStat(highScore));

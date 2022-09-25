@@ -1,7 +1,43 @@
 .hide{
-    visibility: hidden;
+    display: none;
 }
 
-.show{
-    visibility: visible;
+.post {
+    height: 25px;
+}
+
+.container {
+    display: block;
+    width: 50%;
+    justify-content: space-around;
+    height: 90px;
+}
+
+.userControls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    width: max-content;
+}
+
+#question-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#answer-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#answer-buttons {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
 }

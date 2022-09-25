@@ -21,7 +21,7 @@
         <p> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
     </header>
 
-    <div class="container">
+    <div class="container" id="quiz-ele">
         <div id="question-container" class="hide">
             <div id="question"> Question </div>
             
@@ -39,7 +39,16 @@
         </div>
     </div>
     
-    <div id="quiz">
+    <div id="results" class="hide">
+        <div>
+            <h2> All Done! </h2>
+            <p id="resultText"> </p>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname"> <br>
+            <button id="resultSubBtn">
+                Submit
+            </button>
+        </div>
     </div>
     <script src="./assets/script.js"></script>
 </body>

@@ -13,6 +13,7 @@ var resultP = document.getElementById('resultText');
 var submitResults = document.getElementById('resultSubBtn');
 var currentQuestion = 0;
 var wins = 0;
+var timeLeft = 75;
 
 var questionsLists = [
     {
@@ -106,26 +107,47 @@ function answerVerify (event) {
         alert('Wrong Answer');
     }
 
-    showResults();
+    if(currentQuestion >= questionsLists.length - 1) {
+        testShowResults();
+    }
 }
 
 function setTime() {
-    var secLeft = 75;
-    timerText.innerText = secLeft;
-    setInterval(function() {
-        secLeft--;
-    } , 1000)
+    var quizTimer = setInterval(function(){
+    if(timeLeft <= 0){
+        clearInterval(quizTimer);
+        timerText.innerHTML = "Finished";
+        testShowResults();
+    } else {
+        timerText.innerHTML = timeLeft + " seconds remaining";
+    }
+    timeLeft -= 1;
+    }, 1000);
 }
 
-function showResults() {
-    if(currentQuestion >= questionsLists.length - 1) {
-        alert("Nice job! Your score is " + wins);
+// function showResults() {
+//     if(currentQuestion >= questionsLists.length - 1) {
+//         alert("Nice job! Your score is " + wins);
+//         quizSection.classList.add('hide');
+//         resultEl.classList.remove('hide');
+//         resultP.innerText = "Nice job! Your score is " + wins;
+//     }
+
+    
+// }
+
+function testShowResults() {
+    if(currentQuestion <= questionsLists.length - 1) {
+        timeLeft = 0;
+        alert("Time is up!");
+    } else {
         quizSection.classList.add('hide');
         resultEl.classList.remove('hide');
         resultP.innerText = "Nice job! Your score is " + wins;
     }
-
-    
+    quizSection.classList.add('hide');
+    resultEl.classList.remove('hide');
+    resultP.innerText = "Nice job! Your score is " + wins;
 }
 
 startButton.addEventListener("click", startQuiz);

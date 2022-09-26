@@ -18,46 +18,107 @@ var timeLeft = 75;
 var highScore = localStorage.getItem("highScore");
 var questionsLists = [
     {
-        question: 'What 9 + 10?',
+        question: '1. Which HTML element do you use when linking a script?',
         Answers: [
-        '21',
-        '11', 
-        '14',
-        '19' ],
-    correctAnswer: '19'
+        '<script>',
+        '<js>', 
+        '<scripting>',
+        '<div>' ],
+        correctAnswer: '<script>'
     
     },
 
     {
-        question: 'Is Galaxia the GOAT?',
+        question: '2. Where do you link a JavaScript script in your HTML?',
         Answers: [
-        'yes',
-        'yes', 
-        'yes',
-        'yes' ],
-    correctAnswer: 'yes'
+        '<head> section',
+        '<body> section', 
+        'Either is fine' ],
+        correctAnswer: '<body> section'
     
     },
 
     {
-        question: 'Is my wife the baddest :hotface:?',
+        question: '3. What does HTML stand for?',
         Answers: [
-        'yes',
-        'yes', 
-        'yes',
-        'yes' ],
-    correctAnswer: 'yes'
+        'Hyper Text Mark Up Language',
+        'Home Tool MarkUp Language', 
+        'Hyperlink and Text Markup Language'],
+        correctAnswer: 'Hyper Text Mark Up Language'
     
     },
 
     {
-        question: 'Do I have the best wife in the world?',
+        question: '4. What would be the header on the page?',
         Answers: [
-        'yes',
-        'yes', 
-        'yes',
-        'yes' ],
-    correctAnswer: 'yes'
+        '<h6>',
+        '<p>', 
+        '<h1>',
+        '<a>' ],
+        correctAnswer: '<h1>'
+    
+    },
+
+    {
+        question: '5. Which would be used in HTML to format a linebreak?',
+        Answers: [
+        '<a>',
+        '<p>', 
+        '<br>',
+        '<break>' ],
+        correctAnswer: '<br>'
+    
+    },
+
+    {
+        question: '6. What does CSS stand for?',
+        Answers: [
+        'Cascade Style Sheet',
+        'Cascading Style Sheet', 
+        'Computer Style Sheet',
+        'Colorful Style Sheet' ],
+        correctAnswer: 'Cascading Style Sheet'
+    
+    },
+
+    {
+        question: '7. Correct Syntax for linking a CSS file?',
+        Answers: [
+        '<link rel="stylesheet" href="/assets/style.css>',
+        '<link rel="stylesheet" src="/assets/style.css>' ],
+        correctAnswer: '<link rel="stylesheet" href="/assets/style.css>'
+    
+    },
+
+    {
+        question: '8. What section of the HTML should the CSS file be linked?',
+        Answers: [
+        'The head section',
+        'The body section', 
+        'End of document' ],
+        correctAnswer: 'The head section'
+    
+    },
+
+    {
+        question: '9. What HTML tag should be used for inline CSS?',
+        Answers: [
+        '<link>',
+        '<style>', 
+        '<css>',
+        '<color>' ],
+        correctAnswer: '<style>'
+    
+    },
+
+    {
+        question: '10. Commenting in CSS is done how?',
+        Answers: [
+        '// Comment',
+        '/* Comment */', 
+        '!-- Comment',
+        '"Comment"' ],
+        correctAnswer: '/* Comment */'
     
     },
 
@@ -68,7 +129,7 @@ var questionsLists = [
         '', 
         '',
         '' ],
-    correctAnswer: ''
+        correctAnswer: ''
     
     }
 ];
@@ -109,6 +170,8 @@ function answerVerify (event) {
 
     if(currentQuestion >= questionsLists.length - 1) {
         testShowResults();
+    } else if(timeLeft === 0) {
+        testShowResults();
     }
 }
 
@@ -127,21 +190,21 @@ function setTime() {
 }
 
 function testShowResults() {
-    if(currentQuestion >= questionsLists.length - 1) {
         timeLeft = 0;
+        quizSection.classList.remove('container');
         quizSection.classList.add('hide');
         resultEl.classList.remove('hide');
         questionContainer.classList.add('hide');
-        resultP.innerText = "Nice job! Your score is " + lastWin;
-  } 
+
+        resultP.innerText = "Nice job! Your score is " + lastWin + "/10"; 
     timerEl.classList.add('hide');
     scoreBoard(lastWin);
-    console.log(lastWin);
 }
+console.log(lastWin);
 // Function for rendering scoreboard
 function scoreBoard (lastWin) {
     localStorage.setItem('highScore', lastWin);
-    console.log(typeof highScore);
+    console.log(highScore);
     return highScore;
 }
 

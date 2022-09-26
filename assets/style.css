@@ -41,3 +41,22 @@
     width: 50%;
     justify-content: space-around;
 }
+
+@media only screen and (max-width: 700px) { 
+    #answer-container {
+        display: block;
+        height: 200px;
+        justify-content: space-around;
+    }
+
+    #answer-buttons {
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+        justify-content: space-around;
+    }
+
+    .new-answer-btn {
+        width: fit-content;
+    }
+}

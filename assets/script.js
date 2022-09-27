@@ -15,7 +15,7 @@ var username = document.getElementById('fname');
 var currentQuestion = 0;
 var lastWin = 0;
 var timeLeft = 75;
-var highScore = localStorage.getItem("highScore");
+var highScore = JSON.parse(localStorage.getItem('highscores')) || [];
 var questionsLists = [
     {
         question: '1. Which HTML element do you use when linking a script?',
@@ -202,11 +202,36 @@ function testShowResults() {
 }
 console.log(lastWin);
 // Function for rendering scoreboard
-function scoreBoard (lastWin) {
-    localStorage.setItem('highScore', lastWin);
-    console.log(highScore);
-    return highScore;
+function saveScore () {
+    var inputName = username.value;
+    if(!inputName) {
+        alert("Please enter your name")
+    } else {
+        
+    }
 }
 
 startButton.addEventListener("click", startQuiz);
-// submitResults.addEventListener("click", getLeaderStat(highScore));
+submitResults.addEventListener("click", saveScore);
+
+
+// function saveHighscore() {
+//     // get value of input box
+//     var initials = initialsEl.value.trim();
+//     // make sure value wasn't empty
+//     if (initials !== '') {
+//       // get saved scores from localstorage, or if not any, set to empty array
+//       var highscores =
+//         JSON.parse(window.localStorage.getItem('highscores')) || [];
+//       // format new score object for current user
+//       var newScore = {
+//         score: time,
+//         initials: initials,
+//       };
+//       // save to localstorage
+//       highscores.push(newScore);
+//       window.localStorage.setItem('highscores', JSON.stringify(highscores));
+//       // redirect to next page
+//       window.location.href = 'highscores.html';
+//     }
+//   }
